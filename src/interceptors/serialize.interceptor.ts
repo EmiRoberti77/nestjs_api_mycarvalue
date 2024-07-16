@@ -11,9 +11,12 @@ import { plainToClass } from 'class-transformer';
 export function Serialize(dto: any) {
   return UseInterceptors(new SerializeInterceptor(dto));
 }
-
+interface ClassConstructor {
+  new (...args: any[]): {};
+}
 export class SerializeInterceptor implements NestInterceptor {
-  constructor(private dto: any) {}
+  constructor(private dto: ClassConstructor) {}
+
   intercept(
     context: ExecutionContext,
     handler: CallHandler<any>,
