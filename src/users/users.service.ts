@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Injectable, NotFoundException, ValidationPipe } from '@nestjs/common';
+import { OptimisticLockVersionMismatchError, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { Validate } from 'class-validator';
 
 @Injectable()
 export class UsersService {
